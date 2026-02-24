@@ -1,4 +1,4 @@
-# Points2D — C++ Memory Management & Move Semantics
+# Points2D: C++ Memory Management & Move Semantics
 
 A template class that manages a dynamically allocated sequence of 2D points using raw pointers. Built to practice manual memory management in C++ without relying on STL containers like `std::vector`.
 

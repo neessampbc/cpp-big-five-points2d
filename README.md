@@ -10,7 +10,9 @@ For copy assignment I used the copy-and-swap idiom like the assignment suggested
 
 ## Bugs
 
-No known bugs. Output matches expected_output.txt when running with the provided test input file.
+Had an issue where operator>> was reading directly from the input stream with >>, which skips newlines and reads across line boundaries. If a line didn't have enough coordinates, it would steal data from the next line and mess up every read after that. Fixed it by reading one full line with getline into a stringstream and parsing from there instead.
+
+Also double checked operator<< formatting since the autograder is picky — made sure there's no trailing space after the last point, empty sequences print as (), and every output ends with endl.
 
 ## How to run
 

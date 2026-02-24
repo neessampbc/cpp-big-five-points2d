@@ -137,9 +137,11 @@ class Points2D {
     return out;
   }
 
-  // Stream extraction operator. Reads a sequence from the input stream.
-  // Format: first value is the count of points, followed by that many
-  // coordinate pairs. Prints "ERROR" to cerr and aborts on read failure.
+  // Stream extraction operator. Reads one line from the input stream and
+  // parses it as a sequence. Format: first value is the count of points,
+  // followed by that many coordinate pairs. Uses getline + stringstream
+  // to prevent reading across line boundaries.
+  // Prints "ERROR" to cerr and aborts on any read failure.
   // @in: the input stream.
   // @some_points: the Points2D object to populate.
   // @return reference to the input stream.
@@ -148,8 +150,15 @@ class Points2D {
     some_points.sequence_ = nullptr;
     some_points.size_ = 0;
 
+    std::string line;
+    if (!std::getline(in, line)) {
+      std::cerr << "ERROR" << std::endl;
+      abort();
+    }
+
+    std::stringstream ss(line);
     size_t new_size;
-    if (!(in >> new_size)) {
+    if (!(ss >> new_size)) {
       std::cerr << "ERROR" << std::endl;
       abort();
     }
@@ -161,7 +170,7 @@ class Points2D {
 
     for (size_t i = 0; i < new_size; ++i) {
       Object x, y;
-      if (!(in >> x >> y)) {
+      if (!(ss >> x >> y)) {
         std::cerr << "ERROR" << std::endl;
         abort();
       }

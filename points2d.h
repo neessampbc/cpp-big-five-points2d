@@ -168,7 +168,6 @@ class Points2D {
       some_points.sequence_[i][1] = y;
     }
 
-    std::cout << std::endl;
     return in;
   }
 

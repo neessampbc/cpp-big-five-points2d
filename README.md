@@ -1,24 +1,33 @@
-# Assignment 1 - Points2D
+# Points2D — C++ Memory Management & Move Semantics
 
-Neessam Moustafa
+A template class that manages a dynamically allocated sequence of 2D points using raw pointers. Built to practice manual memory management in C++ without relying on STL containers like `std::vector`.
 
-## What I did
+## Concepts Demonstrated
 
-I implemented the full Points2D class in points2d.h. This includes the big five (destructor, copy constructor, copy assignment, move constructor, move assignment), the one-parameter constructor, size(), operator<<, operator>>, operator+, and operator[]. Everything from Part 1 and Part 2 is done.
+- **Rule of Five** — destructor, copy constructor, copy assignment, move constructor, move assignment all manually implemented
+- **Copy-and-swap idiom** for exception-safe copy assignment
+- **Move semantics** — move constructor zeroes out the source, move assignment uses `std::swap` so the source receives the old data
+- **Operator overloading** — `<<`, `>>`, `+`, `[]`
+- **Template programming** — works with `int`, `double`, or any arithmetic type
+- **Raw pointer management** — `new[]` / `delete[]` with no smart pointers or containers
 
-For copy assignment I used the copy-and-swap idiom like the assignment suggested. For move assignment I used std::swap on both members. operator+ handles different sized sequences by appending the leftover points from whichever sequence is longer. operator[] calls abort() if the index is out of bounds. operator>> reads the size first then the coordinate pairs, and prints ERROR to cerr and aborts on bad input.
+## Build & Run
 
-## Bugs
-
-Fixed operator<< formatting — each point now prints with a trailing space after the closing paren, matching what the autograder expects. Also fixed operator>> to only delete[] the old sequence if something was actually allocated.
-
-## How to run
-
+```
 make clean
 make all
 ./test_points2d < test_input_file.txt
+```
+
+## Example
+
+Given input `3 7 4 5 19 2 3`, the program reads 3 points and stores them as `(7, 4) (5, 19) (2, 3)`. Supports element-wise addition of sequences with different sizes — extra points from the longer sequence are appended unchanged.
 
 ## Files
 
-Input: test_input_file.txt
-Expected output: expected_output.txt
+| File | Description |
+|------|-------------|
+| `points2d.h` | Template class implementation (header-only) |
+| `test_points2d.cc` | Test driver exercising all operations |
+| `test_input_file.txt` | Sample input data |
+| `expected_output.txt` | Reference output for verification |

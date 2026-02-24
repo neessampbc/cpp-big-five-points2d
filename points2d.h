@@ -124,14 +124,13 @@ class Points2D {
   friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points) {
     if (some_points.size_ == 0) {
       out << "()" << std::endl;
-      return out;
+    } else {
+      for (size_t i = 0; i < some_points.size_; ++i) {
+        out << "(" << some_points.sequence_[i][0] << ", "
+            << some_points.sequence_[i][1] << ") ";
+      }
+      out << std::endl;
     }
-    for (size_t i = 0; i < some_points.size_; ++i) {
-      if (i > 0) out << " ";
-      out << "(" << some_points.sequence_[i][0]
-          << ", " << some_points.sequence_[i][1] << ")";
-    }
-    out << std::endl;
     return out;
   }
 
@@ -143,9 +142,11 @@ class Points2D {
   // @some_points: the Points2D object to populate.
   // @return reference to the input stream.
   friend std::istream &operator>>(std::istream &in, Points2D &some_points) {
-    delete[] some_points.sequence_;
-    some_points.sequence_ = nullptr;
-    some_points.size_ = 0;
+    if (some_points.size_ > 0) {
+      delete[] some_points.sequence_;
+      some_points.sequence_ = nullptr;
+      some_points.size_ = 0;
+    }
 
     size_t new_size;
     if (!(in >> new_size)) {
@@ -154,9 +155,7 @@ class Points2D {
     }
 
     some_points.size_ = new_size;
-    if (new_size > 0) {
-      some_points.sequence_ = new std::array<Object, 2>[new_size];
-    }
+    some_points.sequence_ = new std::array<Object, 2>[new_size];
 
     for (size_t i = 0; i < new_size; ++i) {
       Object x, y;

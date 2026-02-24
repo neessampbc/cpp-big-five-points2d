@@ -10,7 +10,7 @@ For copy assignment I used the copy-and-swap idiom like the assignment suggested
 
 ## Bugs
 
-Fixed a trailing space issue in operator<< — the space between points was being printed after each point instead of before, which left an invisible trailing space on every output line. Switched to printing the space before each point starting from the second one.
+Fixed operator<< formatting — each point now prints with a trailing space after the closing paren, matching what the autograder expects. Also fixed operator>> to only delete[] the old sequence if something was actually allocated.
 
 ## How to run
 

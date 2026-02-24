@@ -1,9 +1,11 @@
 0 0
 (7, 10) 
 Enter a sequence of points (integer)
+
 Output1: 
 (7, 4) (5, 19) (2, 3) 
 Enter a sequence of points (integer)
+
 Output2: 
 (100, 101) (3, 40) (11, 33) (3, 4) 
 After copy constructor1 c{a}: 
@@ -18,8 +20,10 @@ After a = move(e)
 (7, 4) (5, 19) (2, 3) 
 (100, 101) (3, 40) (11, 33) (3, 4) 
 Enter a sequence of points (double)
+
 (2.1, 20.3) (12.45, 13.1) (34.3, 54.4) 
 Enter a sequence of points (double)
+
 (1.1, 100) (30.2, 22.3) 
 
 Result of a + b

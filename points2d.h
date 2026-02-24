@@ -126,8 +126,9 @@ class Points2D {
       out << "()" << std::endl;
     } else {
       for (size_t i = 0; i < some_points.size_; ++i) {
+        if (i > 0) out << " ";
         out << "(" << some_points.sequence_[i][0] << ", "
-            << some_points.sequence_[i][1] << ") ";
+            << some_points.sequence_[i][1] << ")";
       }
       out << std::endl;
     }
@@ -167,6 +168,7 @@ class Points2D {
       some_points.sequence_[i][1] = y;
     }
 
+    std::cout << std::endl;
     return in;
   }
 

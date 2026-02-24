@@ -10,9 +10,7 @@ For copy assignment I used the copy-and-swap idiom like the assignment suggested
 
 ## Bugs
 
-Had an issue where operator>> was reading directly from the input stream with >>, which skips newlines and reads across line boundaries. If a line didn't have enough coordinates, it would steal data from the next line and mess up every read after that. Fixed it by reading one full line with getline into a stringstream and parsing from there instead.
-
-Also double checked operator<< formatting since the autograder is picky — made sure there's no trailing space after the last point, empty sequences print as (), and every output ends with endl.
+Fixed a trailing space issue in operator<< — the space between points was being printed after each point instead of before, which left an invisible trailing space on every output line. Switched to printing the space before each point starting from the second one.
 
 ## How to run
 
